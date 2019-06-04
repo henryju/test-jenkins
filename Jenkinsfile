@@ -1,7 +1,9 @@
 node {
     stage 'Checkout'
 
-    checkout scm
+    def scmVars = checkout scm
+    def commitHash = scmVars.GIT_COMMIT
+    println commitHash
 
     stage 'Env'
     echo sh(returnStdout: true, script: 'env')
