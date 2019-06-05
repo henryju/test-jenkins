@@ -7,6 +7,10 @@ node {
     echo sh(returnStdout: true, script: "git log --pretty=%P -n 1 ${commitHash}")
     echo sh(returnStdout: true, script: "git show -s --pretty=%P ${commitHash}")
     echo sh(returnStdout: true, script: "git rev-list --parents -n 1 ${commitHash}")
+    
+    if (env.CHANGE_ID) {
+                println pullRequest.head
+            }
 
     stage 'Env'
     echo sh(returnStdout: true, script: 'env')
