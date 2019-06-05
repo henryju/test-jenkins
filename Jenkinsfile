@@ -9,8 +9,11 @@ node {
     echo sh(returnStdout: true, script: "git rev-list --parents -n 1 ${commitHash}")
     
     if (env.CHANGE_ID) {
-                println pullRequest.head
-            }
+        println pullRequest.head
+    }
+    
+    echo sh(returnStdout: true, script: "git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'")
+    
 
     stage 'Env'
     echo sh(returnStdout: true, script: 'env')
